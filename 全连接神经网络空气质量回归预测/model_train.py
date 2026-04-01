@@ -51,7 +51,7 @@ model.add(Dense(1))
 # ==============================================
 # 编译：使用adam，比SGD好太多
 # ==============================================
-model.compile(loss='mse', optimizer='adam')
+model.compile(loss='mse', optimizer='SGD')
 
 # ==============================================
 # 训练
@@ -84,3 +84,17 @@ plt.show()
 y_pred_scaled = model.predict(x_test_scaled)
 y_pred = sc_y.inverse_transform(y_pred_scaled)  # 还原真实值
 y_test_real = sc_y.inverse_transform(y_test_scaled)
+
+
+# 1. 导入库
+# 2. 读取数据 dataset
+# 3. 拆分 X（特征）、Y（标签）
+# 4. 划分训练集 / 测试集：train_test_split
+# 5. 对训练集特征做归一化：sc_x.fit_transform(x_train)
+# 6. 用训练集的scaler 归一化测试集特征：sc_x.transform(x_test)
+# 7. 对训练集标签归一化：sc_y.fit_transform(y_train)
+# 8. 用训练集的scaler 归一化测试集标签：sc_y.transform(y_test)
+# 9. 搭建模型
+# 10. 编译模型
+# 11. 用归一化后的数据训练：model.fit(x_train_scaled, y_train_scaled)
+# 12. 保存模型 model.save("model.h5")
